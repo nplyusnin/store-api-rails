@@ -18,5 +18,5 @@ RSpec.configure do |config|
 
   config.use_transactional_fixtures = true
   config.filter_rails_from_backtrace!
-  config.include config.include FactoryBot::Syntax::Methods
+  config.include FactoryBot::Syntax::Methods
 end
