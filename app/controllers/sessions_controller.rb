@@ -1,0 +1,23 @@
+class SessionsController < ApplicationController
+  def create
+    user = Users::AuthenticateService.new(email: params[:email], password: params[:password]).call
+
+    if user
+      render json: {
+        access_token: Users::TokenGeneratorService.new(user).call
+      }, status: :ok
+    else
+      render json: {
+        error: "invalid email or password"
+      }, status: :unauthorized
+    end
+  end
+
+  def destroy
+    token = request.headers["Authorization"]&.match(/Bearer\s(.*)/)&.[](1)
+    
+    Users::RevokeTokenService.new(token).call
+
+    render json: {}, status: :ok
+  end
+end
