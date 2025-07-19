@@ -1,10 +1,8 @@
 module Users
-  class RevokeTokenService
+  class RevokeTokenService < ApplicationService
     private attr_reader :token
 
-    def initialize(token)
-      @token = token
-    end
+    param :token
 
     def call
       return if token.blank?

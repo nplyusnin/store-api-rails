@@ -1,15 +1,13 @@
 module Users
-  class AuthenticateByTokenService
+  class AuthenticateByTokenService < ApplicationService
     private attr_reader :token
 
-    def initialize(token)
-      @token = token
-    end
+    param :token
 
     def call
       return if token.blank?
 
-      decoded_token = Users::TokenDecoderService.new(token).call
+      decoded_token = Users::TokenDecoderService.call(token)
 
       access_token = AccessToken.find_by(id: decoded_token[:token_id])
 

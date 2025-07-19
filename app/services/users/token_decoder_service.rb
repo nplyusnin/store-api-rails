@@ -1,10 +1,8 @@
 module Users
-  class TokenDecoderService
+  class TokenDecoderService < ApplicationService
     private attr_reader :token
 
-    def initialize(token)
-      @token = token
-    end
+    param :token
 
     def call
       decoded_token = JwtToken.decode(token)

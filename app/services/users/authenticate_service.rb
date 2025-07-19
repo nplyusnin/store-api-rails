@@ -1,11 +1,9 @@
 module Users
-  class AuthenticateService
+  class AuthenticateService < ApplicationService
     private attr_reader :email, :password
 
-    def initialize(email:, password:)
-      @email = email
-      @password = password
-    end
+    option :email
+    option :password
 
     def call
       user = User.find_by(email:)

@@ -1,10 +1,10 @@
 class SessionsController < ApplicationController
   def create
-    user = Users::AuthenticateService.new(email: params[:email], password: params[:password]).call
+    user = Users::AuthenticateService.call(email: params[:email], password: params[:password])
 
     if user
       render json: {
-        access_token: Users::TokenGeneratorService.new(user).call
+        access_token: Users::TokenGeneratorService.call(user)
       }, status: :ok
     else
       render json: {
@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
   def destroy
     token = request.headers["Authorization"]&.match(/Bearer\s(.*)/)&.[](1)
     
-    Users::RevokeTokenService.new(token).call
+    Users::RevokeTokenService.call(token)
 
     render json: {}, status: :ok
   end

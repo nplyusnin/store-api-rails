@@ -1,10 +1,10 @@
 require "rails_helper"
 
 describe Users::RevokeTokenService do
-  subject { described_class.new(token).call }
+  subject { described_class.call(token) }
 
   let(:user) { create(:user) }
-  let!(:token) { Users::TokenGeneratorService.new(user).call }
+  let!(:token) { Users::TokenGeneratorService.call(user) }
   let!(:access_token) { AccessToken.last }
 
   describe "#call" do

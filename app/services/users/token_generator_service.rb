@@ -1,12 +1,10 @@
 module Users
-  class TokenGeneratorService
+  class TokenGeneratorService < ApplicationService
     TOKEN_LIFE_TIME = 15.minutes
 
     private attr_reader :user
 
-    def initialize(user)
-      @user = user
-    end
+    param :user
 
     def call
       access_token = user.access_tokens.create(
