@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    resources :products, only: [:index]
+  end
+
   post "/login" => "sessions#create"
   delete "/logout" => "sessions#destroy"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
