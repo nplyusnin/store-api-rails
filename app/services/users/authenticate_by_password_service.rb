@@ -1,5 +1,5 @@
 module Users
-  class AuthenticateService < ApplicationService
+  class AuthenticateByPasswordService < ApplicationService
     private attr_reader :email, :password
 
     option :email

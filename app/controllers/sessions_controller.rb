@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   def create
-    user = Users::AuthenticateService.call(email: params[:email], password: params[:password])
+    user = Users::AuthenticateByPasswordService.call(email: params[:email], password: params[:password])
 
     if user
       render json: {

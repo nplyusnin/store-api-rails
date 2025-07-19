@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Users::AuthenticateService do
+describe Users::AuthenticateByPasswordService do
   let(:valid_credentials) {
     {
       email: "me@example.org",
