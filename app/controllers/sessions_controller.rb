@@ -14,9 +14,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    token = request.headers["Authorization"]&.match(/Bearer\s(.*)/)&.[](1)
-    
-    Users::RevokeTokenService.call(token)
+    Users::RevokeTokenService.call(bearer_token)
 
     render json: {}, status: :ok
   end
